@@ -13,17 +13,12 @@ public class Main {
         System.out.println("Sample size: ");
         int sampleSize = sc.nextInt();
 
-        if (sampleSize < 1) {
+        if (sampleSize < 1 || totalTosses < tossesInRow) {
             System.out.println("Think you're funny, aye?");
             System.exit(0);
         }
 
         sc.close();
-
-        if (totalTosses < tossesInRow) {
-            System.out.println("Think you're funny, aye?");
-            System.exit(0);
-        }
 
         int runsThatHadXTossesInRow = 0;
         for (int i = 1; i <= sampleSize; i++) {

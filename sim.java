@@ -10,6 +10,14 @@ public class Main {
         System.out.println("Total number of tosses: ");
         int totalTosses = sc.nextInt();
 
+        System.out.println("Sample size: ");
+        int sampleSize = sc.nextInt();
+
+        if (sampleSize < 1) {
+            System.out.println("Think you're funny, aye?");
+            System.exit(0);
+        }
+
         sc.close();
 
         if (totalTosses < tossesInRow) {
@@ -17,9 +25,8 @@ public class Main {
             System.exit(0);
         }
 
-        // run 10000 times for a solid sample size, ensuring good accuracy.
         int runsThatHadXTossesInRow = 0;
-        for (int i = 1; i <= 10000; i++) {
+        for (int i = 1; i <= sampleSize; i++) {
             System.out.println("");
             if (doesRunHaveXHeadsInRow(tossesInRow, totalTosses)) {
                 runsThatHadXTossesInRow++;
@@ -29,13 +36,13 @@ public class Main {
             }
         }
 
-        float p = ((float) runsThatHadXTossesInRow / 10000) * 100;
+        float p =  ((float)runsThatHadXTossesInRow / sampleSize) * 100;
 
-        System.out.println("SIMULATION FINISHED: " + runsThatHadXTossesInRow + "/10000 samples had " + tossesInRow
+        System.out.println("SIMULATION FINISHED: " + runsThatHadXTossesInRow + "/" + sampleSize + " samples had " + tossesInRow
                 + " heads in a row appear.");
         System.out.print("Probability of heads showing up " + tossesInRow + " times in a row for " + totalTosses
                 + " total tosses: ");
-        System.out.printf("%.2f %", p);
+        System.out.printf("%.2f%%", p);
     }
 
     private static boolean doesRunHaveXHeadsInRow(int tossesInRow, int totalTosses) {
